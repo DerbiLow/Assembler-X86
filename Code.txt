@@ -1,0 +1,30 @@
+.686
+.model flat,stdcall
+.stack 100h
+.data
+X dw 9; 
+Y dw 44;
+Z dw 12;
+F dw 240;
+D dw 15;
+Rez dw ?;
+
+.code
+ExitProcess PROTO STDCALL :DWORD
+Start:
+MOV ax, X
+XOR ax, D
+MOV bx, Y
+XOR bx, F
+OR ax, bx
+AND ax, Y
+MOV cx, ax
+MOV ax, bx
+MOV bx, Z
+mov dx,0
+DIV bx
+ADD ax, cx
+MOV REZ, ax
+exit:
+Invoke ExitProcess, ax
+End Start
